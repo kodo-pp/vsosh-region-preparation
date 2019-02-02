@@ -6,7 +6,14 @@
 using namespace std;
 
 default_random_engine gen;
-uniform_real_distribution dist(0.0, 1.0);
+uniform_real_distribution<double> dist(0.0, 1.0);
+
+// Инициализирует генератор случайных чисел
+void init_rng()
+{
+    auto rd = random_device();
+    gen.seed(rd());
+}
 
 // Генерирует случайное число в промежутке [0.0, 1.0)
 double random_double()
@@ -174,6 +181,7 @@ void print(treap::Node* a, int nest = 0)
 
 int main()
 {
+    init_rng();
     cout << boolalpha; // Вывод true/false вместо 1/0
     treap::Node* root = nullptr;
 
